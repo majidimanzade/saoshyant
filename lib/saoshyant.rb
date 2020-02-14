@@ -1,5 +1,6 @@
 require 'rails'
 require 'exception_logger'
+require 'json_exception_handeler'
 
 module Saoshyant
 	extend ActiveSupport::Concern
@@ -9,11 +10,11 @@ module Saoshyant
 		rescue_from Exception, with: :render_exception
 	end
 
-	def render_exception exception
-		code = exception.respond_to?(:code) ? exception&.code : DEFAULT_ERROR_CODE
-		log = exception.respond_to?(:log)
+	def render_exception ex
+		code = Saoshyant::JsonExceptionHandeler.code_status ex
+		log = Saoshyant::JsonExceptionHandeler.log_status ex
 
-		Saoshyant::MajidLogger.log(exception.message) if log == true
-		render json: {:message => exception.message}, status: code
+		Saoshyant::ExceptionLogger.log(ex.message) if log == true
+		render json: {status: 'error', :message => ex.message, :exception_type => ex.class.inspect}, status: code
 	end
 end
