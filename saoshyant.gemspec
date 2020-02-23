@@ -1,5 +1,3 @@
-require 'version'
-
 Gem::Specification.new do |s|
   s.name        = 'saoshyant'
   s.version     = '1.0.3'
