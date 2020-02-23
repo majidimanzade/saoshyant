@@ -1,5 +1,7 @@
 module Saoshyant
-	class JsonExceptionHandeler
+	class ExceptionHandler
+		
+		DEFAULT_ERROR_CODE = 500
 
 		def self.code_status exception, exception_klasses
 			exception_klasses.key?(exception.class) ? exception_klasses[exception.class][:code] : DEFAULT_ERROR_CODE
