@@ -7,6 +7,7 @@ module Saoshyant
 	include ActiveSupport::Rescuable
 
 	@@exception_klasses = {}
+	@@block = nil
 
 	included do
 		rescue_from Exception, with: :execute_exception
@@ -19,11 +20,15 @@ module Saoshyant
 		@@exception_klasses.merge!(exception_klass => {code: code, log: log})
 	end
 
+	def saoshyant(&block)
+		@@block = block
+	end
+
 	def execute_exception ex
 		code = Saoshyant::ExceptionHandler.code_status ex, @@exception_klasses
 		log = Saoshyant::ExceptionHandler.log_status ex, @@exception_klasses
 
 		Saoshyant::ExceptionLogger.log(ex.message) if log == true
-		$saoshyant_response.call(code, ex.message, ex.class.inspect)
+		@@block.call(code, ex.message, ex.class.inspect)
 	end
 end
