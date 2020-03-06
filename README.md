@@ -21,13 +21,13 @@ in blowe Example we want to render `Exceptions` messages in json format.
 
 ```rb
 class PageController < ApplicationController
-	include Saoshyant
+  include Saoshyant
 
-	def initialize		
-		saoshyant do |status_code, msg, exception_klass|
-			render json: {message: msg, error_class_name: exception_klass}, status: status_code
-	    end
+  def initialize		
+    saoshyant do |status_code, msg, exception_klass|
+      render json: {message: msg, error_class_name: exception_klass}, status: status_code
     end
+  end
 end
 
 ```
@@ -41,14 +41,14 @@ saoshyant_option(ExceptionClass, StatusCode, LogFlag)
 ```
 ```rb
 class PageController < ApplicationController
-	include Saoshyant
+  include Saoshyant
 
-	def initialize
-	    saoshyant_option(NameError, 402, true)
-		saoshyant do |status_code, msg, exception_klass|
-			render json: {message: msg, error_class_name: exception_klass}, status: status_code
-	    end
+  def initialize
+    saoshyant_option(NameError, 402, true)
+    saoshyant do |status_code, msg, exception_klass|
+      render json: {message: msg, error_class_name: exception_klass}, status: status_code
     end
+  end
 end
 
 ```
