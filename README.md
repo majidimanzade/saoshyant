@@ -1,10 +1,10 @@
 # Saoshyant
 
-**Saoshyant is a Exception handler Gem** that allow you to customize your exceptions to have custom reaction when error raised in rails Application.
+**Saoshyant is an exception handler Gem** that allows you to customize your exceptions to have a custom reaction when error raised in rails Application.
 
-When you Encountering to an error in Rails Application it show Red Page and explain Exception. With Saoshyant you can log or render error with custom status code.
+When you Encountering to an error in Rails Application it shows Red Page and explains Exception. With Saoshyant you can log or render error with custom status code.
 
-the Most Useage of Saoshyant is in Rest Apis Aplications that you need render erros with custom error code and messages.
+the Most Usage of Saoshyant is in Rest Apis Applications that you need to render errors with custom error code and messages.
 
 ## Requirements
 * Rails: 3.0.0+
